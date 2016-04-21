@@ -6,8 +6,11 @@
 <br />
 <a href="<%=updateBookURL%>">Add new Book &raquo;</a>
 <hr />
+
+<!-- 
 <a href="javascript:void();" id="jqueryText">jQuery in action</a>
 <div id="sayHelloDiv" style="display: none">jQuery is working</div>
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -29,7 +32,9 @@
 	<div id="tabs-3">Tab 3 content</div>
 </div>
 <script type="text/javascript">
-$(document).ready(function() {
+	$(document).ready(function() {
 		$("#tabs").tabs();
 	});
 </script>
+
+ -->
