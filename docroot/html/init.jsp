@@ -10,4 +10,5 @@
 <%@page import="com.slayer.service.LMSBookLocalServiceUtil"%>
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <portlet:defineObjects />
