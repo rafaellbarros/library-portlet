@@ -25,7 +25,7 @@ public class LibraryPortlet extends MVCPortlet {
 			throws IOException, PortletException, SystemException {
 		String bookTitle = ParamUtil.getString(actionRequest, "bookTitle");
 		String author = ParamUtil.getString(actionRequest, "author");
-
+		System.out.println("Hello ===>>>>>" + bookTitle + author);
 		insertBook(bookTitle, author);
 
 		// redirect after insert
@@ -33,6 +33,11 @@ public class LibraryPortlet extends MVCPortlet {
 		// String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
 		// actionResponse.sendRedirect(redirectURL);
 
+		redirectSuccess(actionRequest, actionResponse);
+	}
+
+	private void redirectSuccess(ActionRequest actionRequest, ActionResponse actionResponse)
+			throws IOException {
 		// WebKeys é uma interface que contém as definições para as teclas comumente usados em toda
 		// a base de código do portal
 		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest
@@ -50,29 +55,22 @@ public class LibraryPortlet extends MVCPortlet {
 		actionResponse.sendRedirect(successPageURL.toString());
 	}
 
-	private void insertBook(String bookTitle, String author) {
+	public LMSBook insertBook(String bookTitle, String author) {
 		// 1. Instanciar um objeto vazio do tipo LMSBookImpl
 		LMSBook lmsBook = new LMSBookImpl();
 
-		// 2. Gerar uma chave primária única a ser definido
-		/*
-		 * long bookId = 01;
-		 * 
-		 * try { bookId = CounterLocalServiceUtil.increment(); } catch
-		 * (com.liferay.portal.kernel.exception.SystemException e) { e.printStackTrace(); }
-		 */
+		// 2. Defina os campos para este objeto
 
-		// 3. Defina os campos para este objeto
-		// lmsBook.setBookId(bookId);
 		lmsBook.setBookTitle(bookTitle);
 		lmsBook.setAuthor(author);
 		lmsBook.setCreateDate(new Date());
 
-		// 4. Chamar a API Service Layer para persistir o objeto
 		try {
 			lmsBook = LMSBookLocalServiceUtil.addLMSBook(lmsBook);
 		} catch (com.liferay.portal.kernel.exception.SystemException e) {
 			e.printStackTrace();
 		}
+		return lmsBook;
 	}
+
 }

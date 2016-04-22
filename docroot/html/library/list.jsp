@@ -1,32 +1,28 @@
 <%@include file="/html/init.jsp"%>
 
-<h1>List of books in our Library</h1>
+<% 
 
-<%
-	List<LMSBook> books = LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
+PortletURL iteratorURL = renderResponse.createRenderURL();
+iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
+
 %>
 
-<table border="1" width="80%">
-	<thead>
-		<tr>
-			<th>Book Title</th>
-			<th>Author</th>
-			<th>Date Added</th>
-		</tr>
-	</thead>
-	<tbody>
-		<%
-			for (LMSBook book : books) {
-		%>
-		<tr>
-			<td><%=book.getBookTitle()%></td>
-			<td><%=book.getAuthor()%></td>
-			<td><%=book.getCreateDate()%></td>
-		</tr>
-		<%
-			}
-		%>
-	</tbody>
-</table>
-<br />
-<a href="<portlet:renderURL/>">&laquo; Go Back</a>
+<h1>List of books in our Library</h1>
+<liferay-ui:search-container delta="5" deltaConfigurable="true" iteratorURL="<%= iteratorURL %>">
+<liferay-ui:search-container-results results="<%= LMSBookLocalServiceUtil.getLMSBooks(searchContainer.getStart(), searchContainer.getEnd())%>" total="<%= LMSBookLocalServiceUtil.getLMSBooksCount() %>"/>
+	<liferay-ui:search-container-row className="com.slayer.model.LMSBook" modelVar="book" keyProperty="bookId">
+		
+		<portlet:renderURL var="rowURL"> 
+			<!--<portlet:param name="backURL" value="" />--> 
+			<portlet:param name="bookId" value="<%= String.valueOf(book.getBookId()) %>" /> <portlet:param name="click" value="link"/> 
+		</portlet:renderURL>
+		
+			
+		<liferay-ui:search-container-column-text name="Book Title" property="bookTitle"/>
+		<liferay-ui:search-container-column-text name="Author" property="author"/>
+		<liferay-ui:search-container-column-text name="Date Added" property="createDate"></liferay-ui:search-container-column-text>
+		
+	</liferay-ui:search-container-row>
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
+
