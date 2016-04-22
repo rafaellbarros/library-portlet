@@ -1,5 +1,6 @@
 package com.library;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -8,6 +9,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.slayer.model.LMSBook;
 import com.slayer.model.impl.LMSBookImpl;
 import com.slayer.service.LMSBookLocalServiceUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import java.io.IOException;
 import java.util.Date;
@@ -18,7 +20,6 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
-import javax.transaction.SystemException;
 
 public class LibraryPortlet extends MVCPortlet {
 	public void updateBook(ActionRequest actionRequest, ActionResponse actionResponse)
@@ -34,6 +35,24 @@ public class LibraryPortlet extends MVCPortlet {
 		// actionResponse.sendRedirect(redirectURL);
 
 		redirectSuccess(actionRequest, actionResponse);
+	}
+	
+	
+	public void deleteBook(ActionRequest actionRequest, ActionResponse actionResponse)
+			throws IOException, PortletException {
+		
+		long bookId = ParamUtil.getLong(actionRequest, "bookId");
+		if(bookId > 0){// valid bookId
+			try {
+				LMSBookLocalServiceUtil.deleteLMSBook(bookId);
+			} catch (PortalException | SystemException e) {
+				e.printStackTrace();
+			} 
+		}
+		
+		// gracefully redirecting to the list view
+		String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
+		actionResponse.sendRedirect(redirectURL);
 	}
 
 	private void redirectSuccess(ActionRequest actionRequest, ActionResponse actionResponse)
