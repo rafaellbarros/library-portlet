@@ -6,7 +6,7 @@
 	<class name="com.slayer.model.impl.LMSBookImpl" table="library_LMSBook">
 		<cache usage="read-write" />
 		<id name="bookId" type="long">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="bookTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />

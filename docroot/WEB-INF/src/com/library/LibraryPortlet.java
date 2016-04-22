@@ -1,7 +1,9 @@
 package com.library;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.slayer.model.LMSBook;
 import com.slayer.model.impl.LMSBookImpl;
@@ -12,7 +14,10 @@ import java.util.Date;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
 import javax.transaction.SystemException;
 
 public class LibraryPortlet extends MVCPortlet {
@@ -22,6 +27,27 @@ public class LibraryPortlet extends MVCPortlet {
 		String author = ParamUtil.getString(actionRequest, "author");
 
 		insertBook(bookTitle, author);
+
+		// redirect after insert
+		// redireciona depois de inserir
+		// String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
+		// actionResponse.sendRedirect(redirectURL);
+
+		// WebKeys é uma interface que contém as definições para as teclas comumente usados em toda
+		// a base de código do portal
+		ThemeDisplay themeDisplay = (ThemeDisplay) actionRequest
+				.getAttribute(WebKeys.THEME_DISPLAY);
+
+		PortletConfig portletConfig = (PortletConfig) actionRequest
+				.getAttribute("javax.portlet.config");
+
+		String portletName = portletConfig.getPortletName();
+
+		PortletURL successPageURL = PortletURLFactoryUtil.create(actionRequest, portletName
+				+ "_WAR_" + portletName, themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+		successPageURL.setParameter("jspPage", LibraryConstants.PAGE_SUCCESS);
+		actionResponse.sendRedirect(successPageURL.toString());
 	}
 
 	private void insertBook(String bookTitle, String author) {
@@ -29,16 +55,15 @@ public class LibraryPortlet extends MVCPortlet {
 		LMSBook lmsBook = new LMSBookImpl();
 
 		// 2. Gerar uma chave primária única a ser definido
-		long bookId = 01;
-
-		try {
-			bookId = CounterLocalServiceUtil.increment();
-		} catch (com.liferay.portal.kernel.exception.SystemException e) {
-			e.printStackTrace();
-		}
+		/*
+		 * long bookId = 01;
+		 * 
+		 * try { bookId = CounterLocalServiceUtil.increment(); } catch
+		 * (com.liferay.portal.kernel.exception.SystemException e) { e.printStackTrace(); }
+		 */
 
 		// 3. Defina os campos para este objeto
-		lmsBook.setBookId(bookId);
+		// lmsBook.setBookId(bookId);
 		lmsBook.setBookTitle(bookTitle);
 		lmsBook.setAuthor(author);
 		lmsBook.setCreateDate(new Date());

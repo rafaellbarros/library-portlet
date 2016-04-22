@@ -12,6 +12,8 @@
 	<portlet>
 		<portlet-name>library-portlet</portlet-name>
 		<icon>/icon.png</icon>
+		<!-- Declarative way -> true -> evita multiplos submits -->
+		<!-- <action-url-redirect>true</action-url-redirect> -->
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-css>http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css</header-portlet-css>
 		<header-portlet-javascript>

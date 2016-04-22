@@ -7,6 +7,13 @@
 <a href="<%=updateBookURL%>">Add new Book &raquo;</a>
 <hr />
 
+<%
+PortletURL listBooksURL = renderResponse.createRenderURL();
+listBooksURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
+%>
+&nbsp;|&nbsp;
+<a href="<%= listBooksURL.toString() %>">Show All Books &raquo;</a>
+
 <!-- 
 <a href="javascript:void();" id="jqueryText">jQuery in action</a>
 <div id="sayHelloDiv" style="display: none">jQuery is working</div>
