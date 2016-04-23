@@ -62,9 +62,10 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 			{ "bookId", Types.BIGINT },
 			{ "bookTitle", Types.VARCHAR },
 			{ "author", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP }
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table library_LMSBook (bookId LONG not null primary key,bookTitle VARCHAR(75) null,author VARCHAR(75) null,createDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table library_LMSBook (bookId LONG not null primary key,bookTitle VARCHAR(75) null,author VARCHAR(75) null,createDate DATE null,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table library_LMSBook";
 	public static final String ORDER_BY_JPQL = " ORDER BY lmsBook.bookId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY library_LMSBook.bookId ASC";
@@ -122,6 +123,7 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 		attributes.put("bookTitle", getBookTitle());
 		attributes.put("author", getAuthor());
 		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -150,6 +152,12 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 		if (createDate != null) {
 			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -204,6 +212,16 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 	}
 
 	@Override
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	@Override
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
+	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(0,
 			LMSBook.class.getName(), getPrimaryKey());
@@ -234,6 +252,7 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 		lmsBookImpl.setBookTitle(getBookTitle());
 		lmsBookImpl.setAuthor(getAuthor());
 		lmsBookImpl.setCreateDate(getCreateDate());
+		lmsBookImpl.setModifiedDate(getModifiedDate());
 
 		lmsBookImpl.resetOriginalValues();
 
@@ -317,12 +336,21 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 			lmsBookCacheModel.createDate = Long.MIN_VALUE;
 		}
 
+		Date modifiedDate = getModifiedDate();
+
+		if (modifiedDate != null) {
+			lmsBookCacheModel.modifiedDate = modifiedDate.getTime();
+		}
+		else {
+			lmsBookCacheModel.modifiedDate = Long.MIN_VALUE;
+		}
+
 		return lmsBookCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{bookId=");
 		sb.append(getBookId());
@@ -332,6 +360,8 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 		sb.append(getAuthor());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -339,7 +369,7 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.slayer.model.LMSBook");
@@ -361,6 +391,10 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -375,5 +409,6 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 	private String _bookTitle;
 	private String _author;
 	private Date _createDate;
+	private Date _modifiedDate;
 	private LMSBook _escapedModel;
 }

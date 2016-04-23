@@ -107,6 +107,18 @@ public class LMSBookLocalServiceClpInvoker {
 		_methodName39 = "setBeanIdentifier";
 
 		_methodParameterTypes39 = new String[] { "java.lang.String" };
+
+		_methodName44 = "insertBook";
+
+		_methodParameterTypes44 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName45 = "modifyBook";
+
+		_methodParameterTypes45 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -210,6 +222,18 @@ public class LMSBookLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+			return LMSBookLocalServiceUtil.insertBook((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+			return LMSBookLocalServiceUtil.modifyBook(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -249,4 +273,8 @@ public class LMSBookLocalServiceClpInvoker {
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
 }

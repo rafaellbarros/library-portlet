@@ -6,5 +6,6 @@
 		<field name="bookTitle" type="String" />
 		<field name="author" type="String" />
 		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
 	</model>
 </model-hints>

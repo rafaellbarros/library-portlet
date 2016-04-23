@@ -30,6 +30,8 @@ deleteBookURL.setParameter("redirectURL", iteratorURL.toString());
 		<% deleteBookURL.setParameter("bookId", Long.toString(book.getBookId())); %>
 		<liferay-ui:search-container-column-text name="Delete"
 								href="<%= deleteBookURL.toString() %>" value="delete"/>
+								<liferay-ui:search-container-column-jsp name="Actions"
+path="<%= LibraryConstants.PAGE_ACTIONS %>" />
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>

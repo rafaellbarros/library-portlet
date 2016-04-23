@@ -11,5 +11,6 @@
 		<property name="bookTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

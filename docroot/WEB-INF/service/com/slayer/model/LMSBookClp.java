@@ -77,6 +77,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		attributes.put("bookTitle", getBookTitle());
 		attributes.put("author", getAuthor());
 		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -105,6 +106,12 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 		if (createDate != null) {
 			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -200,6 +207,29 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		}
 	}
 
+	@Override
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	@Override
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+
+		if (_lmsBookRemoteModel != null) {
+			try {
+				Class<?> clazz = _lmsBookRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setModifiedDate", Date.class);
+
+				method.invoke(_lmsBookRemoteModel, modifiedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getLMSBookRemoteModel() {
 		return _lmsBookRemoteModel;
 	}
@@ -273,6 +303,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		clone.setBookTitle(getBookTitle());
 		clone.setAuthor(getAuthor());
 		clone.setCreateDate(getCreateDate());
+		clone.setModifiedDate(getModifiedDate());
 
 		return clone;
 	}
@@ -325,7 +356,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{bookId=");
 		sb.append(getBookId());
@@ -335,6 +366,8 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		sb.append(getAuthor());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -342,7 +375,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("<model><model-name>");
 		sb.append("com.slayer.model.LMSBook");
@@ -364,6 +397,10 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -374,6 +411,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 	private String _bookTitle;
 	private String _author;
 	private Date _createDate;
+	private Date _modifiedDate;
 	private BaseModel<?> _lmsBookRemoteModel;
 	private Class<?> _clpSerializerClass = com.slayer.service.ClpSerializer.class;
 }

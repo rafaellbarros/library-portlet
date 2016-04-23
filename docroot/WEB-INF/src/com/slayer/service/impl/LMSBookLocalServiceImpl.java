@@ -14,7 +14,14 @@
 
 package com.slayer.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
+import com.slayer.model.LMSBook;
+import com.slayer.model.impl.LMSBookImpl;
+import com.slayer.service.LMSBookLocalServiceUtil;
 import com.slayer.service.base.LMSBookLocalServiceBaseImpl;
+
+import java.util.Date;
 
 /**
  * The implementation of the l m s book local service.
@@ -36,4 +43,44 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.slayer.service.LMSBookLocalServiceUtil} to access the l m s book local service.
 	 */
+
+	public LMSBook insertBook(String bookTitle, String author) {
+		// 1. Instanciar um objeto vazio do tipo LMSBookImpl
+		LMSBook lmsBook = new LMSBookImpl();
+
+		// 2. Defina os campos para este objeto
+
+		lmsBook.setBookTitle(bookTitle);
+		lmsBook.setAuthor(author);
+		lmsBook.setCreateDate(new Date());
+
+		try {
+			lmsBook = LMSBookLocalServiceUtil.addLMSBook(lmsBook);
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
+		return lmsBook;
+	}
+	
+	public LMSBook modifyBook(long bookId, String bookTitle, String author) {
+		LMSBook lmsBook = null;
+		try {
+			lmsBook = LMSBookLocalServiceUtil.fetchLMSBook(bookId);
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
+		if (Validator.isNotNull(lmsBook)) {
+			lmsBook.setBookTitle(bookTitle);
+			lmsBook.setAuthor(author);
+			lmsBook.setModifiedDate(new Date());
+			try {
+				LMSBookLocalServiceUtil.updateLMSBook(lmsBook);
+			} catch (SystemException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lmsBook;
+	}
+
 }

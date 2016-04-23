@@ -34,6 +34,7 @@ public class LMSBookSoap implements Serializable {
 		soapModel.setBookTitle(model.getBookTitle());
 		soapModel.setAuthor(model.getAuthor());
 		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setModifiedDate(model.getModifiedDate());
 
 		return soapModel;
 	}
@@ -118,8 +119,17 @@ public class LMSBookSoap implements Serializable {
 		_createDate = createDate;
 	}
 
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
 	private long _bookId;
 	private String _bookTitle;
 	private String _author;
 	private Date _createDate;
+	private Date _modifiedDate;
 }

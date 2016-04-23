@@ -247,4 +247,10 @@ public interface LMSBookLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.slayer.model.LMSBook insertBook(java.lang.String bookTitle,
+		java.lang.String author);
+
+	public com.slayer.model.LMSBook modifyBook(long bookId,
+		java.lang.String bookTitle, java.lang.String author);
 }

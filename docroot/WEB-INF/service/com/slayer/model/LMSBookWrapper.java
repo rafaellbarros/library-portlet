@@ -53,6 +53,7 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 		attributes.put("bookTitle", getBookTitle());
 		attributes.put("author", getAuthor());
 		attributes.put("createDate", getCreateDate());
+		attributes.put("modifiedDate", getModifiedDate());
 
 		return attributes;
 	}
@@ -81,6 +82,12 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 
 		if (createDate != null) {
 			setCreateDate(createDate);
+		}
+
+		Date modifiedDate = (Date)attributes.get("modifiedDate");
+
+		if (modifiedDate != null) {
+			setModifiedDate(modifiedDate);
 		}
 	}
 
@@ -182,6 +189,26 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 	@Override
 	public void setCreateDate(java.util.Date createDate) {
 		_lmsBook.setCreateDate(createDate);
+	}
+
+	/**
+	* Returns the modified date of this l m s book.
+	*
+	* @return the modified date of this l m s book
+	*/
+	@Override
+	public java.util.Date getModifiedDate() {
+		return _lmsBook.getModifiedDate();
+	}
+
+	/**
+	* Sets the modified date of this l m s book.
+	*
+	* @param modifiedDate the modified date of this l m s book
+	*/
+	@Override
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_lmsBook.setModifiedDate(modifiedDate);
 	}
 
 	@Override

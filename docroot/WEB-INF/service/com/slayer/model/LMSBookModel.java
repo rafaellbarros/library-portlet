@@ -117,6 +117,20 @@ public interface LMSBookModel extends BaseModel<LMSBook> {
 	 */
 	public void setCreateDate(Date createDate);
 
+	/**
+	 * Returns the modified date of this l m s book.
+	 *
+	 * @return the modified date of this l m s book
+	 */
+	public Date getModifiedDate();
+
+	/**
+	 * Sets the modified date of this l m s book.
+	 *
+	 * @param modifiedDate the modified date of this l m s book
+	 */
+	public void setModifiedDate(Date modifiedDate);
+
 	@Override
 	public boolean isNew();
 

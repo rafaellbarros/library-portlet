@@ -271,6 +271,16 @@ public class LMSBookLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.slayer.model.LMSBook insertBook(
+		java.lang.String bookTitle, java.lang.String author) {
+		return getService().insertBook(bookTitle, author);
+	}
+
+	public static com.slayer.model.LMSBook modifyBook(long bookId,
+		java.lang.String bookTitle, java.lang.String author) {
+		return getService().modifyBook(bookId, bookTitle, author);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -321,6 +321,7 @@ public class LMSBookPersistenceImpl extends BasePersistenceImpl<LMSBook>
 		lmsBookImpl.setBookTitle(lmsBook.getBookTitle());
 		lmsBookImpl.setAuthor(lmsBook.getAuthor());
 		lmsBookImpl.setCreateDate(lmsBook.getCreateDate());
+		lmsBookImpl.setModifiedDate(lmsBook.getModifiedDate());
 
 		return lmsBookImpl;
 	}

@@ -278,6 +278,18 @@ public class LMSBookLocalServiceWrapper implements LMSBookLocalService,
 		return _lmsBookLocalService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	@Override
+	public com.slayer.model.LMSBook insertBook(java.lang.String bookTitle,
+		java.lang.String author) {
+		return _lmsBookLocalService.insertBook(bookTitle, author);
+	}
+
+	@Override
+	public com.slayer.model.LMSBook modifyBook(long bookId,
+		java.lang.String bookTitle, java.lang.String author) {
+		return _lmsBookLocalService.modifyBook(bookId, bookTitle, author);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

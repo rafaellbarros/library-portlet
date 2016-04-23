@@ -11,4 +11,6 @@
 <%@page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
+<%@page import="com.slayer.model.impl.LMSBookImpl"%>
 <portlet:defineObjects />

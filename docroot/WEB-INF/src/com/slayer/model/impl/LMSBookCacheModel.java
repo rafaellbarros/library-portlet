@@ -37,7 +37,7 @@ import java.util.Date;
 public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("{bookId=");
 		sb.append(bookId);
@@ -47,6 +47,8 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 		sb.append(author);
 		sb.append(", createDate=");
 		sb.append(createDate);
+		sb.append(", modifiedDate=");
+		sb.append(modifiedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -79,6 +81,13 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 			lmsBookImpl.setCreateDate(new Date(createDate));
 		}
 
+		if (modifiedDate == Long.MIN_VALUE) {
+			lmsBookImpl.setModifiedDate(null);
+		}
+		else {
+			lmsBookImpl.setModifiedDate(new Date(modifiedDate));
+		}
+
 		lmsBookImpl.resetOriginalValues();
 
 		return lmsBookImpl;
@@ -90,6 +99,7 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 		bookTitle = objectInput.readUTF();
 		author = objectInput.readUTF();
 		createDate = objectInput.readLong();
+		modifiedDate = objectInput.readLong();
 	}
 
 	@Override
@@ -112,10 +122,12 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 		}
 
 		objectOutput.writeLong(createDate);
+		objectOutput.writeLong(modifiedDate);
 	}
 
 	public long bookId;
 	public String bookTitle;
 	public String author;
 	public long createDate;
+	public long modifiedDate;
 }
