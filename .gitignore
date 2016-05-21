@@ -3,6 +3,11 @@
 .settings
 .tern-project
 
+docroot/WEB-INF/classes/com/library/
+docroot/WEB-INF/classes/com/slayer/model/impl/
+docroot/WEB-INF/classes/com/slayer/service/base/
+docroot/WEB-INF/classes/com/slayer/service/impl/
+docroot/WEB-INF/classes/com/slayer/service/persistence/
 
 
 

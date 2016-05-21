@@ -13,4 +13,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.slayer.model.impl.LMSBookImpl"%>
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
+<%@page import="com.liferay.portal.kernel.util.Validator"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <portlet:defineObjects />

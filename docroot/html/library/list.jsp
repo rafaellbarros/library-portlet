@@ -9,6 +9,10 @@ PortletURL deleteBookURL = renderResponse.createActionURL();
 deleteBookURL.setParameter(ActionRequest.ACTION_NAME, LibraryConstants.ACTION_DELETE_BOOK);
 deleteBookURL.setParameter("redirectURL", iteratorURL.toString());
 
+PortletURL bookDetailsURL = renderResponse.createRenderURL();
+bookDetailsURL.setParameter("jspPage",
+LibraryConstants.PAGE_DETAILS);
+
 %>
 
 <h1>List of books in our Library</h1>
@@ -18,11 +22,12 @@ deleteBookURL.setParameter("redirectURL", iteratorURL.toString());
 		
 		<portlet:renderURL var="rowURL"> 
 			<!--<portlet:param name="backURL" value="" />--> 
+			<% bookDetailsURL.setParameter("bookId",Long.toString(book.getBookId())); %>
 			<portlet:param name="bookId" value="<%= String.valueOf(book.getBookId()) %>" /> <portlet:param name="click" value="link"/> 
 		</portlet:renderURL>
 		
 			
-		<liferay-ui:search-container-column-text name="Book Title" property="bookTitle"/>
+		<liferay-ui:search-container-column-text name="Book Title" property="bookTitle" href="<%= bookDetailsURL.toString() %>"/>
 		<liferay-ui:search-container-column-text name="Author" property="author"/>
 		<liferay-ui:search-container-column-text name="Date Added">
 			<fmt:formatDate value="<%= book.getCreateDate() %>" pattern="dd/MM/yyyy" />
