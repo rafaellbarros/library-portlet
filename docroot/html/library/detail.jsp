@@ -1,12 +1,12 @@
 <%@include file="/html/init.jsp"%>
-<h1>Book Details</h1>
-<%
-	LMSBook lmsBook = null;
+<% String backURL = ParamUtil.getString(request, "backURL"); %>
+
+<%LMSBook lmsBook = null;
 	long bookId = ParamUtil.getLong(request, "bookId");
 	if (bookId > 0L) {
 		lmsBook = LMSBookLocalServiceUtil.fetchLMSBook(bookId);
-	}
-%>
+	}%>
+<liferay-ui:header backLabel="&laquo; Back to List" title="Book Details" backURL="<%=backURL%>" />
 <c:if test="<%=Validator.isNotNull(lmsBook)%>">
 	<table border="1">
 		<tr>

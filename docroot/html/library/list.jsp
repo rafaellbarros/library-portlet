@@ -10,8 +10,8 @@ deleteBookURL.setParameter(ActionRequest.ACTION_NAME, LibraryConstants.ACTION_DE
 deleteBookURL.setParameter("redirectURL", iteratorURL.toString());
 
 PortletURL bookDetailsURL = renderResponse.createRenderURL();
-bookDetailsURL.setParameter("jspPage",
-LibraryConstants.PAGE_DETAILS);
+bookDetailsURL.setParameter("jspPage", LibraryConstants.PAGE_DETAILS);
+bookDetailsURL.setParameter("backURL", themeDisplay.getURLCurrent());
 
 %>
 
