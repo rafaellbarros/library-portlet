@@ -8,4 +8,5 @@ public interface LibraryConstants {
 	static final String	PAGE_SUCCESS		= "/html/library/success.jsp";
 	static final String	PAGE_ACTIONS		= "/html/library/actions.jsp";
 	static final String	PAGE_DETAILS		= "/html/library/detail.jsp";
+	static final String ACTION_DELETE_BOOKS = "deleteBooks";
 }

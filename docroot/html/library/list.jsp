@@ -1,7 +1,8 @@
-<%@include file="/html/init.jsp"%>
 <%@page import="java.util.Collections"%>
 <%@page import="org.apache.commons.beanutils.BeanComparator"%>
-
+<%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
+<%@page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil"%>
+<%@include file="/html/init.jsp"%>
 <% 
 
 PortletURL iteratorURL = renderResponse.createRenderURL();
@@ -31,7 +32,23 @@ Collections.reverse(allbooks);
 %>
 
 <h1>List of books in our Library</h1>
-<liferay-ui:search-container delta="5" deltaConfigurable="true" iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>" orderByType="<%= orderByType %>">
+<liferay-ui:search-container delta="5" deltaConfigurable="true" iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>" orderByType="<%= orderByType %>" rowChecker="<%= new RowChecker(renderResponse) %>">
+<c:if test="<%= !allbooks.isEmpty() %>">
+	<% String functionName =  renderResponse.getNamespace() + "submitFormForAction()"; %>
+	<% System.out.print(">>>> " + functionName); %>
+	<aui:button-row>
+		<aui:button value="delete" cssClass="delete-books-button" onClick="<%= functionName %>"/>
+	</aui:button-row>
+</c:if>
+<portlet:actionURL
+name="<%= LibraryConstants.ACTION_DELETE_BOOKS %>"
+	var="deleteBooksURL">
+	<portlet:param name="redirectURL"
+	value="<%= iteratorURL.toString() %>"/>
+</portlet:actionURL>
+<aui:form action="<%= deleteBooksURL.toString() %>">
+	<aui:input name="bookIdsForDelete" type="hidden" />
+</aui:form>
 <liferay-ui:search-container-results results="<%= ListUtil.subList(allbooks,searchContainer.getStart(), searchContainer.getEnd())%>" total="<%= LMSBookLocalServiceUtil.getLMSBooksCount() %>"/>
 	<liferay-ui:search-container-row className="com.slayer.model.LMSBook" modelVar="book" keyProperty="bookId">
 		
@@ -50,9 +67,12 @@ Collections.reverse(allbooks);
 		<% deleteBookURL.setParameter("bookId", Long.toString(book.getBookId())); %>
 		<liferay-ui:search-container-column-text name="Delete"
 								href="<%= deleteBookURL.toString() %>" value="delete"/>
-								<liferay-ui:search-container-column-jsp name="Actions"
-path="<%= LibraryConstants.PAGE_ACTIONS %>" />
+								<liferay-ui:search-container-column-jsp name="Actions" path="<%= LibraryConstants.PAGE_ACTIONS %>" />
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
-
+<aui:script use="aui-base">
+<portlet:namespace/>submitFormForAction=function() {
+	alert("you're inside submitFormForAction");
+}
+</aui:script>
