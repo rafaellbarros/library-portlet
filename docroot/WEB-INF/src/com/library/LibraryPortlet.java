@@ -5,7 +5,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -76,7 +75,7 @@ public class LibraryPortlet extends MVCPortlet {
 				"bookIdsForDelete");
 
 		// convert this into JSON format.
-		bookIdsForDelete = "[" + bookIdsForDelete + "]";
+		bookIdsForDelete = "["+ bookIdsForDelete + "]";
 
 		// The presence of ":" in the string
 		// creates problem while parsing.
@@ -91,13 +90,11 @@ public class LibraryPortlet extends MVCPortlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
+		
 		// process the jsonArray
-		if (Validator.isNotNull(jsonArray)) {
+		if (Validator.isNotNull(jsonArray)) {		
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-				long bookId = jsonObject.getLong("bookId");
+				long bookId = jsonArray.getLong(i);
 				try {
 					LMSBookLocalServiceUtil.deleteLMSBook(bookId);
 				} catch (PortalException e) {

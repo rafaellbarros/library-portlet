@@ -32,23 +32,20 @@ Collections.reverse(allbooks);
 %>
 
 <h1>List of books in our Library</h1>
-<liferay-ui:search-container delta="5" deltaConfigurable="true" iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>" orderByType="<%= orderByType %>" rowChecker="<%= new RowChecker(renderResponse) %>">
 <c:if test="<%= !allbooks.isEmpty() %>">
-	<% String functionName =  renderResponse.getNamespace() + "submitFormForAction()"; %>
-	<% System.out.print(">>>> " + functionName); %>
+	<% String functionName =  renderResponse.getNamespace() + "submitFormForAction();"; %>
 	<aui:button-row>
 		<aui:button value="delete" cssClass="delete-books-button" onClick="<%= functionName %>"/>
 	</aui:button-row>
 </c:if>
-<portlet:actionURL
-name="<%= LibraryConstants.ACTION_DELETE_BOOKS %>"
-	var="deleteBooksURL">
-	<portlet:param name="redirectURL"
-	value="<%= iteratorURL.toString() %>"/>
+
+<portlet:actionURL name="<%= LibraryConstants.ACTION_DELETE_BOOKS %>" var="deleteBooksURL">
+	<portlet:param name="redirectURL" value="<%= iteratorURL.toString() %>"/>
 </portlet:actionURL>
 <aui:form action="<%= deleteBooksURL.toString() %>">
 	<aui:input name="bookIdsForDelete" type="hidden" />
-</aui:form>
+
+<liferay-ui:search-container delta="5" deltaConfigurable="true" iteratorURL="<%= iteratorURL %>" orderByCol="<%= orderByCol %>" orderByType="<%= orderByType %>" rowChecker="<%= new RowChecker(renderResponse) %>">
 <liferay-ui:search-container-results results="<%= ListUtil.subList(allbooks,searchContainer.getStart(), searchContainer.getEnd())%>" total="<%= LMSBookLocalServiceUtil.getLMSBooksCount() %>"/>
 	<liferay-ui:search-container-row className="com.slayer.model.LMSBook" modelVar="book" keyProperty="bookId">
 		
@@ -71,8 +68,47 @@ name="<%= LibraryConstants.ACTION_DELETE_BOOKS %>"
 	</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+</aui:form>
 <aui:script use="aui-base">
-<portlet:namespace/>submitFormForAction=function() {
-	alert("you're inside submitFormForAction");
+var deleteBooksBtn = A.one('.delete-books-button');
+if (deleteBooksBtn != 'undefined') {
+	var toggleDisabled = function(disabled) {
+	deleteBooksBtn.one(':button').attr('disabled', disabled);
+	deleteBooksBtn.toggleClass('aui-button-disabled', disabled);
+	};
+	
+	var resultsGrid = A.one('.results-grid');
+	
+	if (resultsGrid){
+		resultsGrid.delegate(
+			'click',
+			function(event) {
+				var disabled = (resultsGrid.one(':checked') == null);
+				Liferay.Util.toggleDisabled(disabled);
+			},
+			':checkbox'
+		);
+	}
+	Liferay.Util.toggleDisabled(true);
 }
+
+Liferay.provide(
+	window,
+	'<portlet:namespace/>submitFormForAction',
+	function() {
+		var accepted = confirm('<%=
+			UnicodeLanguageUtil.get(pageContext,
+			"are-you-sure-you-want-to-delete-selected-books") %>');
+		if (accepted) {
+			var frm = document.<portlet:namespace/>fm;
+			var hiddenField =
+				frm.<portlet:namespace/>bookIdsForDelete;
+			hiddenField.value =
+				Liferay.Util.listCheckedExcept(
+					frm, "<portlet:namespace/>allRowIds");
+				submitForm(frm);
+		}
+	},
+	['liferay-util-list-fields']
+);
 </aui:script>
