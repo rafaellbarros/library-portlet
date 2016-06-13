@@ -253,4 +253,9 @@ public interface LMSBookLocalService extends BaseLocalService,
 
 	public com.slayer.model.LMSBook modifyBook(long bookId,
 		java.lang.String bookTitle, java.lang.String author);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.slayer.model.LMSBook> searchBooks(
+		java.lang.String bookTitle)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

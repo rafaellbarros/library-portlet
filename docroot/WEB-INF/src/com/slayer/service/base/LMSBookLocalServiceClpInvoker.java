@@ -119,6 +119,10 @@ public class LMSBookLocalServiceClpInvoker {
 		_methodParameterTypes45 = new String[] {
 				"long", "java.lang.String", "java.lang.String"
 			};
+
+		_methodName46 = "searchBooks";
+
+		_methodParameterTypes46 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -234,6 +238,11 @@ public class LMSBookLocalServiceClpInvoker {
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			return LMSBookLocalServiceUtil.searchBooks((java.lang.String)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -277,4 +286,6 @@ public class LMSBookLocalServiceClpInvoker {
 	private String[] _methodParameterTypes44;
 	private String _methodName45;
 	private String[] _methodParameterTypes45;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
 }

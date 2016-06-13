@@ -8,11 +8,20 @@
 <hr />
 
 <%
-PortletURL listBooksURL = renderResponse.createRenderURL();
-listBooksURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
+	PortletURL listBooksURL = renderResponse.createRenderURL();
+	listBooksURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
 %>
+
+
+<hr />
+<portlet:actionURL var="searchBooksURL" name="<%=LibraryConstants.ACTION_SEARCH_BOOKS%>" />
+<aui:form action="<%=searchBooksURL.toString()%>">
+	<aui:input name="searchTerm" label="Enter Title to search" />
+	<aui:button type="submit" value="Search" />
+</aui:form>
+
 &nbsp;|&nbsp;
-<a href="<%= listBooksURL.toString() %>">Show All Books &raquo;</a>
+<a href="<%=listBooksURL.toString()%>">Show All Books &raquo;</a>
 
 <!-- 
 <a href="javascript:void();" id="jqueryText">jQuery in action</a>

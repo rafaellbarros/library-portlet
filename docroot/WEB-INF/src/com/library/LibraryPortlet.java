@@ -11,9 +11,11 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.slayer.model.LMSBook;
 import com.slayer.service.LMSBookLocalServiceUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -35,13 +37,13 @@ public class LibraryPortlet extends MVCPortlet {
 	private void setSortParams(RenderRequest request) {
 		String jspPage = ParamUtil.getString(request, "jspPage");
 		if (jspPage.equalsIgnoreCase(LibraryConstants.PAGE_LIST)) {
-			String orderByCol = ParamUtil.getString(
-			request, "orderByCol", "bookTitle");
+			String orderByCol = ParamUtil.getString(request, "orderByCol",
+					"bookTitle");
 			request.setAttribute("orderByCol", orderByCol);
-			String orderByType = ParamUtil.getString(
-			request, "orderByType", "asc");
+			String orderByType = ParamUtil.getString(request, "orderByType",
+					"asc");
 			request.setAttribute("orderByType", orderByType);
-			}
+		}
 
 	}
 
@@ -66,8 +68,7 @@ public class LibraryPortlet extends MVCPortlet {
 
 		redirectSuccess(actionRequest, actionResponse);
 	}
-	
-	
+
 	public void deleteBooks(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
 
@@ -75,7 +76,7 @@ public class LibraryPortlet extends MVCPortlet {
 				"bookIdsForDelete");
 
 		// convert this into JSON format.
-		bookIdsForDelete = "["+ bookIdsForDelete + "]";
+		bookIdsForDelete = "[" + bookIdsForDelete + "]";
 
 		// The presence of ":" in the string
 		// creates problem while parsing.
@@ -90,9 +91,9 @@ public class LibraryPortlet extends MVCPortlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 		// process the jsonArray
-		if (Validator.isNotNull(jsonArray)) {		
+		if (Validator.isNotNull(jsonArray)) {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				long bookId = jsonArray.getLong(i);
 				try {
@@ -109,7 +110,6 @@ public class LibraryPortlet extends MVCPortlet {
 		actionResponse
 				.setRenderParameter("jspPage", LibraryConstants.PAGE_LIST);
 	}
-	
 
 	public void deleteBook(ActionRequest actionRequest,
 			ActionResponse actionResponse) throws IOException, PortletException {
@@ -128,6 +128,27 @@ public class LibraryPortlet extends MVCPortlet {
 		// gracefully redirecting to the list view
 		String redirectURL = ParamUtil.getString(actionRequest, "redirectURL");
 		actionResponse.sendRedirect(redirectURL);
+	}
+	
+	//action processor Pesquisar
+	public void searchBooks(ActionRequest actionRequest,
+			ActionResponse actionResponse) throws IOException, PortletException {
+		String searchTerm = ParamUtil.getString(actionRequest, "searchTerm");
+		
+		System.out.println(" serach Term >> " + searchTerm);
+		if (Validator.isNull(searchTerm))
+			return;
+		try {
+			List<LMSBook> lmsBooks = LMSBookLocalServiceUtil
+					.searchBooks(searchTerm);
+			
+			System.out.println("LMSBook >>> " + lmsBooks.toString());
+			actionRequest.setAttribute("SEARCH_RESULT", lmsBooks);
+			actionResponse.setRenderParameter("jspPage",
+					LibraryConstants.PAGE_LIST);
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void redirectSuccess(ActionRequest actionRequest,

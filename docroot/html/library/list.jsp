@@ -4,6 +4,29 @@
 <%@page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil"%>
 <%@include file="/html/init.jsp"%>
 <% 
+//List<LMSBook> books = LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
+
+
+List<LMSBook> booksTemp = (List<LMSBook>) request.getAttribute("SEARCH_RESULT");
+
+List<LMSBook> books = Validator.isNotNull(booksTemp)? 
+	ListUtil.copy(booksTemp) : 
+    LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
+
+List<LMSBook> allbooks = new ArrayList<LMSBook>(books);
+
+String orderByCol = (String) request.getAttribute("orderByCol");
+String orderByType = (String) request.getAttribute("orderByType");
+
+BeanComparator comp = new BeanComparator(orderByCol);
+
+booksTemp = ListUtil.copy(allbooks);
+Collections.sort(booksTemp, comp);
+
+if (orderByType.equalsIgnoreCase("desc")) {
+	Collections.reverse(booksTemp);
+}
+allbooks = ListUtil.copy(booksTemp);
 
 PortletURL iteratorURL = renderResponse.createRenderURL();
 iteratorURL.setParameter("jspPage", LibraryConstants.PAGE_LIST);
@@ -16,18 +39,6 @@ PortletURL bookDetailsURL = renderResponse.createRenderURL();
 bookDetailsURL.setParameter("jspPage", LibraryConstants.PAGE_DETAILS);
 bookDetailsURL.setParameter("backURL", themeDisplay.getURLCurrent());
 
-List<LMSBook> books = LMSBookLocalServiceUtil.getLMSBooks(-1, -1);
-List<LMSBook> allbooks = new ArrayList<LMSBook>(books);
-
-String orderByCol = (String) request.getAttribute("orderByCol");
-String orderByType = (String) request.getAttribute("orderByType");
-
-
-BeanComparator comp = new BeanComparator(orderByCol);
-Collections.sort(allbooks, comp);
-if (orderByType.equalsIgnoreCase("desc")) {
-Collections.reverse(allbooks);
-}
 
 %>
 

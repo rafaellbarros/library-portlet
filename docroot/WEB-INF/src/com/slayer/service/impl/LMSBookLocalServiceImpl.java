@@ -22,15 +22,20 @@ import com.slayer.service.LMSBookLocalServiceUtil;
 import com.slayer.service.base.LMSBookLocalServiceBaseImpl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the l m s book local service.
  *
  * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.slayer.service.LMSBookLocalService} interface.
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.slayer.service.LMSBookLocalService} interface.
  *
  * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * This is a local service. Methods of this service will not have security
+ * checks based on the propagated JAAS credentials because this service can only
+ * be accessed from within the same VM.
  * </p>
  *
  * @author rafael
@@ -40,8 +45,10 @@ import java.util.Date;
 public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.slayer.service.LMSBookLocalServiceUtil} to access the l m s book local service.
+	 * 
+	 * Never reference this interface directly. Always use {@link
+	 * com.slayer.service.LMSBookLocalServiceUtil} to access the l m s book
+	 * local service.
 	 */
 
 	public LMSBook insertBook(String bookTitle, String author) {
@@ -61,7 +68,7 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 		}
 		return lmsBook;
 	}
-	
+
 	public LMSBook modifyBook(long bookId, String bookTitle, String author) {
 		LMSBook lmsBook = null;
 		try {
@@ -79,8 +86,12 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return lmsBook;
+	}
+
+	public List<LMSBook> searchBooks(String bookTitle) throws SystemException {
+		return lmsBookPersistence.findByBookTitle(bookTitle);
 	}
 
 }

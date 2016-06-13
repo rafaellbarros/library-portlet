@@ -15,6 +15,7 @@
 package com.slayer.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -67,8 +68,8 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 		};
 	public static final String TABLE_SQL_CREATE = "create table library_LMSBook (bookId LONG not null primary key,bookTitle VARCHAR(75) null,author VARCHAR(75) null,createDate DATE null,modifiedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table library_LMSBook";
-	public static final String ORDER_BY_JPQL = " ORDER BY lmsBook.bookId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY library_LMSBook.bookId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY lmsBook.modifiedDate DESC";
+	public static final String ORDER_BY_SQL = " ORDER BY library_LMSBook.modifiedDate DESC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -78,7 +79,12 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.slayer.model.LMSBook"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = false;
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
+				"value.object.column.bitmask.enabled.com.slayer.model.LMSBook"),
+			true);
+	public static long AUTHOR_COLUMN_BITMASK = 1L;
+	public static long BOOKTITLE_COLUMN_BITMASK = 2L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 4L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.slayer.model.LMSBook"));
 
@@ -183,7 +189,17 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public void setBookTitle(String bookTitle) {
+		_columnBitmask |= BOOKTITLE_COLUMN_BITMASK;
+
+		if (_originalBookTitle == null) {
+			_originalBookTitle = _bookTitle;
+		}
+
 		_bookTitle = bookTitle;
+	}
+
+	public String getOriginalBookTitle() {
+		return GetterUtil.getString(_originalBookTitle);
 	}
 
 	@Override
@@ -198,7 +214,17 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public void setAuthor(String author) {
+		_columnBitmask |= AUTHOR_COLUMN_BITMASK;
+
+		if (_originalAuthor == null) {
+			_originalAuthor = _author;
+		}
+
 		_author = author;
+	}
+
+	public String getOriginalAuthor() {
+		return GetterUtil.getString(_originalAuthor);
 	}
 
 	@Override
@@ -218,7 +244,13 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_columnBitmask = -1L;
+
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getColumnBitmask() {
+		return _columnBitmask;
 	}
 
 	@Override
@@ -261,17 +293,17 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public int compareTo(LMSBook lmsBook) {
-		long primaryKey = lmsBook.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < primaryKey) {
-			return -1;
+		value = DateUtil.compareTo(getModifiedDate(), lmsBook.getModifiedDate());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > primaryKey) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	@Override
@@ -303,6 +335,13 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 
 	@Override
 	public void resetOriginalValues() {
+		LMSBookModelImpl lmsBookModelImpl = this;
+
+		lmsBookModelImpl._originalBookTitle = lmsBookModelImpl._bookTitle;
+
+		lmsBookModelImpl._originalAuthor = lmsBookModelImpl._author;
+
+		lmsBookModelImpl._columnBitmask = 0;
 	}
 
 	@Override
@@ -407,8 +446,11 @@ public class LMSBookModelImpl extends BaseModelImpl<LMSBook>
 		};
 	private long _bookId;
 	private String _bookTitle;
+	private String _originalBookTitle;
 	private String _author;
+	private String _originalAuthor;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _columnBitmask;
 	private LMSBook _escapedModel;
 }
