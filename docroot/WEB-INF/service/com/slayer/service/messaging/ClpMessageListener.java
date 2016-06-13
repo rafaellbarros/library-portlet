@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.messaging.Message;
 
 import com.slayer.service.ClpSerializer;
 import com.slayer.service.LMSBookLocalServiceUtil;
+import com.slayer.service.LMSBookServiceUtil;
 
 /**
  * @author rafael
@@ -36,6 +37,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			LMSBookLocalServiceUtil.clearService();
+
+			LMSBookServiceUtil.clearService();
 		}
 	}
 }

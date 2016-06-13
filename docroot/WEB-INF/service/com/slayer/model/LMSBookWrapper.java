@@ -49,6 +49,7 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("uuid", getUuid());
 		attributes.put("bookId", getBookId());
 		attributes.put("bookTitle", getBookTitle());
 		attributes.put("author", getAuthor());
@@ -60,6 +61,12 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
 		Long bookId = (Long)attributes.get("bookId");
 
 		if (bookId != null) {
@@ -109,6 +116,26 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 	@Override
 	public void setPrimaryKey(long primaryKey) {
 		_lmsBook.setPrimaryKey(primaryKey);
+	}
+
+	/**
+	* Returns the uuid of this l m s book.
+	*
+	* @return the uuid of this l m s book
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _lmsBook.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this l m s book.
+	*
+	* @param uuid the uuid of this l m s book
+	*/
+	@Override
+	public void setUuid(java.lang.String uuid) {
+		_lmsBook.setUuid(uuid);
 	}
 
 	/**

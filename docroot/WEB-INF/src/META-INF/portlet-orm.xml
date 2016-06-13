@@ -10,6 +10,9 @@
 	<mapped-superclass class="com.slayer.model.impl.LMSBookModelImpl">
 		<attributes>
 			<id name="bookId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
 			<basic name="bookTitle" />
 			<basic name="author" />
 			<basic name="createDate">

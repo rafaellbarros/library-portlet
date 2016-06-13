@@ -35,6 +35,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import com.slayer.model.LMSBook;
 
 import com.slayer.service.LMSBookLocalService;
+import com.slayer.service.persistence.LMSBookFinder;
 import com.slayer.service.persistence.LMSBookPersistence;
 
 import java.io.Serializable;
@@ -295,6 +296,25 @@ public abstract class LMSBookLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the l m s book remote service.
+	 *
+	 * @return the l m s book remote service
+	 */
+	public com.slayer.service.LMSBookService getLMSBookService() {
+		return lmsBookService;
+	}
+
+	/**
+	 * Sets the l m s book remote service.
+	 *
+	 * @param lmsBookService the l m s book remote service
+	 */
+	public void setLMSBookService(
+		com.slayer.service.LMSBookService lmsBookService) {
+		this.lmsBookService = lmsBookService;
+	}
+
+	/**
 	 * Returns the l m s book persistence.
 	 *
 	 * @return the l m s book persistence
@@ -310,6 +330,24 @@ public abstract class LMSBookLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 */
 	public void setLMSBookPersistence(LMSBookPersistence lmsBookPersistence) {
 		this.lmsBookPersistence = lmsBookPersistence;
+	}
+
+	/**
+	 * Returns the l m s book finder.
+	 *
+	 * @return the l m s book finder
+	 */
+	public LMSBookFinder getLMSBookFinder() {
+		return lmsBookFinder;
+	}
+
+	/**
+	 * Sets the l m s book finder.
+	 *
+	 * @param lmsBookFinder the l m s book finder
+	 */
+	public void setLMSBookFinder(LMSBookFinder lmsBookFinder) {
+		this.lmsBookFinder = lmsBookFinder;
 	}
 
 	/**
@@ -546,8 +584,12 @@ public abstract class LMSBookLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	@BeanReference(type = com.slayer.service.LMSBookLocalService.class)
 	protected com.slayer.service.LMSBookLocalService lmsBookLocalService;
+	@BeanReference(type = com.slayer.service.LMSBookService.class)
+	protected com.slayer.service.LMSBookService lmsBookService;
 	@BeanReference(type = LMSBookPersistence.class)
 	protected LMSBookPersistence lmsBookPersistence;
+	@BeanReference(type = LMSBookFinder.class)
+	protected LMSBookFinder lmsBookFinder;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ImageLocalService.class)

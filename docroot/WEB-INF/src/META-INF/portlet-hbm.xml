@@ -8,6 +8,7 @@
 		<id name="bookId" type="long">
 			<generator class="increment" />
 		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<property name="bookTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />

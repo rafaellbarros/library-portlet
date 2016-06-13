@@ -14,12 +14,15 @@
 
 package com.slayer.service.impl;
 
+
+
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.slayer.model.LMSBook;
 import com.slayer.model.impl.LMSBookImpl;
 import com.slayer.service.LMSBookLocalServiceUtil;
 import com.slayer.service.base.LMSBookLocalServiceBaseImpl;
+import com.slayer.service.persistence.LMSBookFinderUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -91,7 +94,28 @@ public class LMSBookLocalServiceImpl extends LMSBookLocalServiceBaseImpl {
 	}
 
 	public List<LMSBook> searchBooks(String bookTitle) throws SystemException {
-		return lmsBookPersistence.findByBookTitle(bookTitle);
+		//return lmsBookPersistence.findByBookTitle(bookTitle);
+		
+		
+		//dynamic Query
+		
+		/*
+		        DynamicQuery dynamicQuery =
+		 
+				DynamicQueryFactoryUtil.forClass(LMSBook.class);
+				Property bookTitleProperty = PropertyFactoryUtil.forName("bookTitle");
+				dynamicQuery.add(bookTitleProperty.like("%" + bookTitle + "%"));
+				return dynamicQuery(dynamicQuery);
+		*/
+		
+		return LMSBookFinderUtil.findBooks("%" + bookTitle + "%");
 	}
+
+	@Override
+	public List<LMSBook> searchBooks(String bookTitle, long companyId,
+			long groupId) throws SystemException {
+		return null;
+	}
+	
 
 }

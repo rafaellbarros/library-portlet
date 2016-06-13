@@ -74,6 +74,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
+		attributes.put("uuid", getUuid());
 		attributes.put("bookId", getBookId());
 		attributes.put("bookTitle", getBookTitle());
 		attributes.put("author", getAuthor());
@@ -85,6 +86,12 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
+		String uuid = (String)attributes.get("uuid");
+
+		if (uuid != null) {
+			setUuid(uuid);
+		}
+
 		Long bookId = (Long)attributes.get("bookId");
 
 		if (bookId != null) {
@@ -113,6 +120,29 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+	}
+
+	@Override
+	public String getUuid() {
+		return _uuid;
+	}
+
+	@Override
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+
+		if (_lmsBookRemoteModel != null) {
+			try {
+				Class<?> clazz = _lmsBookRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUuid", String.class);
+
+				method.invoke(_lmsBookRemoteModel, uuid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
 		}
 	}
 
@@ -300,6 +330,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 	public Object clone() {
 		LMSBookClp clone = new LMSBookClp();
 
+		clone.setUuid(getUuid());
 		clone.setBookId(getBookId());
 		clone.setBookTitle(getBookTitle());
 		clone.setAuthor(getAuthor());
@@ -357,9 +388,11 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
-		sb.append("{bookId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", bookId=");
 		sb.append(getBookId());
 		sb.append(", bookTitle=");
 		sb.append(getBookTitle());
@@ -376,12 +409,16 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.slayer.model.LMSBook");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>bookId</column-name><column-value><![CDATA[");
 		sb.append(getBookId());
@@ -408,6 +445,7 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _bookId;
 	private String _bookTitle;
 	private String _author;

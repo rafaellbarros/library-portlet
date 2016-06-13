@@ -2,6 +2,7 @@
 
 <model-hints>
 	<model name="com.slayer.model.LMSBook">
+		<field name="uuid" type="String" />
 		<field name="bookId" type="long" />
 		<field name="bookTitle" type="String" />
 		<field name="author" type="String" />

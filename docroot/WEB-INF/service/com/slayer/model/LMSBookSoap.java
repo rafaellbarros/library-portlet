@@ -21,15 +21,17 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.slayer.service.http.LMSBookServiceSoap}.
  *
  * @author rafael
+ * @see com.slayer.service.http.LMSBookServiceSoap
  * @generated
  */
 public class LMSBookSoap implements Serializable {
 	public static LMSBookSoap toSoapModel(LMSBook model) {
 		LMSBookSoap soapModel = new LMSBookSoap();
 
+		soapModel.setUuid(model.getUuid());
 		soapModel.setBookId(model.getBookId());
 		soapModel.setBookTitle(model.getBookTitle());
 		soapModel.setAuthor(model.getAuthor());
@@ -87,6 +89,14 @@ public class LMSBookSoap implements Serializable {
 		setBookId(pk);
 	}
 
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
 	public long getBookId() {
 		return _bookId;
 	}
@@ -127,6 +137,7 @@ public class LMSBookSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	private String _uuid;
 	private long _bookId;
 	private String _bookTitle;
 	private String _author;

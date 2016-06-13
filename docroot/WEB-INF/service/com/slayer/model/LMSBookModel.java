@@ -60,6 +60,21 @@ public interface LMSBookModel extends BaseModel<LMSBook> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
+	 * Returns the uuid of this l m s book.
+	 *
+	 * @return the uuid of this l m s book
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this l m s book.
+	 *
+	 * @param uuid the uuid of this l m s book
+	 */
+	public void setUuid(String uuid);
+
+	/**
 	 * Returns the book ID of this l m s book.
 	 *
 	 * @return the book ID of this l m s book

@@ -37,9 +37,11 @@ import java.util.Date;
 public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
-		sb.append("{bookId=");
+		sb.append("{uuid=");
+		sb.append(uuid);
+		sb.append(", bookId=");
 		sb.append(bookId);
 		sb.append(", bookTitle=");
 		sb.append(bookTitle);
@@ -57,6 +59,13 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 	@Override
 	public LMSBook toEntityModel() {
 		LMSBookImpl lmsBookImpl = new LMSBookImpl();
+
+		if (uuid == null) {
+			lmsBookImpl.setUuid(StringPool.BLANK);
+		}
+		else {
+			lmsBookImpl.setUuid(uuid);
+		}
 
 		lmsBookImpl.setBookId(bookId);
 
@@ -95,6 +104,7 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
+		uuid = objectInput.readUTF();
 		bookId = objectInput.readLong();
 		bookTitle = objectInput.readUTF();
 		author = objectInput.readUTF();
@@ -105,6 +115,13 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
+		if (uuid == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(uuid);
+		}
+
 		objectOutput.writeLong(bookId);
 
 		if (bookTitle == null) {
@@ -125,6 +142,7 @@ public class LMSBookCacheModel implements CacheModel<LMSBook>, Externalizable {
 		objectOutput.writeLong(modifiedDate);
 	}
 
+	public String uuid;
 	public long bookId;
 	public String bookTitle;
 	public String author;
