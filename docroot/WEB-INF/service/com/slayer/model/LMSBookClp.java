@@ -261,6 +261,25 @@ public class LMSBookClp extends BaseModelImpl<LMSBook> implements LMSBook {
 		}
 	}
 
+	@Override
+	public java.util.List<com.slayer.model.LMSBorrowing> getLMSBorrowings() {
+		try {
+			String methodName = "getLMSBorrowings";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<com.slayer.model.LMSBorrowing> returnObj = (java.util.List<com.slayer.model.LMSBorrowing>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
 	public BaseModel<?> getLMSBookRemoteModel() {
 		return _lmsBookRemoteModel;
 	}

@@ -14,7 +14,7 @@
 
 package com.slayer.service.base;
 
-import com.slayer.service.LMSBookLocalServiceUtil;
+import com.slayer.service.LMSBorrowingLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -22,23 +22,23 @@ import java.util.Arrays;
  * @author rafael
  * @generated
  */
-public class LMSBookLocalServiceClpInvoker {
-	public LMSBookLocalServiceClpInvoker() {
-		_methodName0 = "addLMSBook";
+public class LMSBorrowingLocalServiceClpInvoker {
+	public LMSBorrowingLocalServiceClpInvoker() {
+		_methodName0 = "addLMSBorrowing";
 
-		_methodParameterTypes0 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes0 = new String[] { "com.slayer.model.LMSBorrowing" };
 
-		_methodName1 = "createLMSBook";
+		_methodName1 = "createLMSBorrowing";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteLMSBook";
+		_methodName2 = "deleteLMSBorrowing";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteLMSBook";
+		_methodName3 = "deleteLMSBorrowing";
 
-		_methodParameterTypes3 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes3 = new String[] { "com.slayer.model.LMSBorrowing" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -76,11 +76,11 @@ public class LMSBookLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchLMSBook";
+		_methodName10 = "fetchLMSBorrowing";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getLMSBook";
+		_methodName11 = "getLMSBorrowing";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -88,95 +88,69 @@ public class LMSBookLocalServiceClpInvoker {
 
 		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getLMSBooks";
+		_methodName13 = "getLMSBorrowings";
 
 		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "getLMSBooksCount";
+		_methodName14 = "getLMSBorrowingsCount";
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "updateLMSBook";
+		_methodName15 = "updateLMSBorrowing";
 
-		_methodParameterTypes15 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes15 = new String[] { "com.slayer.model.LMSBorrowing" };
 
-		_methodName46 = "getBeanIdentifier";
+		_methodName40 = "getBeanIdentifier";
 
-		_methodParameterTypes46 = new String[] {  };
+		_methodParameterTypes40 = new String[] {  };
 
-		_methodName47 = "setBeanIdentifier";
+		_methodName41 = "setBeanIdentifier";
 
-		_methodParameterTypes47 = new String[] { "java.lang.String" };
-
-		_methodName52 = "insertBook";
-
-		_methodParameterTypes52 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
-
-		_methodName53 = "modifyBook";
-
-		_methodParameterTypes53 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName54 = "searchBooks";
-
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
-
-		_methodName55 = "searchBooks";
-
-		_methodParameterTypes55 = new String[] {
-				"java.lang.String", "long", "long"
-			};
-
-		_methodName56 = "getBorrowings";
-
-		_methodParameterTypes56 = new String[] { "long" };
+		_methodParameterTypes41 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return LMSBookLocalServiceUtil.addLMSBook((com.slayer.model.LMSBook)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.addLMSBorrowing((com.slayer.model.LMSBorrowing)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return LMSBookLocalServiceUtil.createLMSBook(((Long)arguments[0]).longValue());
+			return LMSBorrowingLocalServiceUtil.createLMSBorrowing(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return LMSBookLocalServiceUtil.deleteLMSBook(((Long)arguments[0]).longValue());
+			return LMSBorrowingLocalServiceUtil.deleteLMSBorrowing(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return LMSBookLocalServiceUtil.deleteLMSBook((com.slayer.model.LMSBook)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.deleteLMSBorrowing((com.slayer.model.LMSBorrowing)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQuery();
+			return LMSBorrowingLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return LMSBorrowingLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return LMSBorrowingLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -184,85 +158,56 @@ public class LMSBookLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return LMSBookLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return LMSBorrowingLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return LMSBookLocalServiceUtil.fetchLMSBook(((Long)arguments[0]).longValue());
+			return LMSBorrowingLocalServiceUtil.fetchLMSBorrowing(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getLMSBook(((Long)arguments[0]).longValue());
+			return LMSBorrowingLocalServiceUtil.getLMSBorrowing(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getLMSBooks(((Integer)arguments[0]).intValue(),
+			return LMSBorrowingLocalServiceUtil.getLMSBorrowings(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getLMSBooksCount();
+			return LMSBorrowingLocalServiceUtil.getLMSBorrowingsCount();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return LMSBookLocalServiceUtil.updateLMSBook((com.slayer.model.LMSBook)arguments[0]);
+			return LMSBorrowingLocalServiceUtil.updateLMSBorrowing((com.slayer.model.LMSBorrowing)arguments[0]);
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getBeanIdentifier();
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+			return LMSBorrowingLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			LMSBookLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			LMSBorrowingLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
-		}
-
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return LMSBookLocalServiceUtil.insertBook((java.lang.String)arguments[0],
-				(java.lang.String)arguments[1]);
-		}
-
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return LMSBookLocalServiceUtil.modifyBook(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
-		}
-
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return LMSBookLocalServiceUtil.searchBooks((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return LMSBookLocalServiceUtil.searchBooks((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue());
-		}
-
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return LMSBookLocalServiceUtil.getBorrowings(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -300,18 +245,8 @@ public class LMSBookLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 }

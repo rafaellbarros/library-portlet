@@ -304,6 +304,12 @@ public class LMSBookLocalServiceWrapper implements LMSBookLocalService,
 		return _lmsBookLocalService.searchBooks(bookTitle, companyId, groupId);
 	}
 
+	@Override
+	public java.util.List<com.slayer.model.LMSBorrowing> getBorrowings(
+		long bookId) throws com.liferay.portal.kernel.exception.SystemException {
+		return _lmsBookLocalService.getBorrowings(bookId);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

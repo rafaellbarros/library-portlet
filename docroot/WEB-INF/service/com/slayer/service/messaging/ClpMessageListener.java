@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.slayer.service.ClpSerializer;
 import com.slayer.service.LMSBookLocalServiceUtil;
 import com.slayer.service.LMSBookServiceUtil;
+import com.slayer.service.LMSBorrowingLocalServiceUtil;
 
 /**
  * @author rafael
@@ -39,6 +40,7 @@ public class ClpMessageListener extends BaseMessageListener {
 			LMSBookLocalServiceUtil.clearService();
 
 			LMSBookServiceUtil.clearService();
+			LMSBorrowingLocalServiceUtil.clearService();
 		}
 	}
 }

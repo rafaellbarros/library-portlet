@@ -28,6 +28,7 @@ import com.slayer.model.LMSBook;
 import com.slayer.service.LMSBookService;
 import com.slayer.service.persistence.LMSBookFinder;
 import com.slayer.service.persistence.LMSBookPersistence;
+import com.slayer.service.persistence.LMSBorrowingPersistence;
 
 import javax.sql.DataSource;
 
@@ -123,6 +124,44 @@ public abstract class LMSBookServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setLMSBookFinder(LMSBookFinder lmsBookFinder) {
 		this.lmsBookFinder = lmsBookFinder;
+	}
+
+	/**
+	 * Returns the l m s borrowing local service.
+	 *
+	 * @return the l m s borrowing local service
+	 */
+	public com.slayer.service.LMSBorrowingLocalService getLMSBorrowingLocalService() {
+		return lmsBorrowingLocalService;
+	}
+
+	/**
+	 * Sets the l m s borrowing local service.
+	 *
+	 * @param lmsBorrowingLocalService the l m s borrowing local service
+	 */
+	public void setLMSBorrowingLocalService(
+		com.slayer.service.LMSBorrowingLocalService lmsBorrowingLocalService) {
+		this.lmsBorrowingLocalService = lmsBorrowingLocalService;
+	}
+
+	/**
+	 * Returns the l m s borrowing persistence.
+	 *
+	 * @return the l m s borrowing persistence
+	 */
+	public LMSBorrowingPersistence getLMSBorrowingPersistence() {
+		return lmsBorrowingPersistence;
+	}
+
+	/**
+	 * Sets the l m s borrowing persistence.
+	 *
+	 * @param lmsBorrowingPersistence the l m s borrowing persistence
+	 */
+	public void setLMSBorrowingPersistence(
+		LMSBorrowingPersistence lmsBorrowingPersistence) {
+		this.lmsBorrowingPersistence = lmsBorrowingPersistence;
 	}
 
 	/**
@@ -360,6 +399,10 @@ public abstract class LMSBookServiceBaseImpl extends BaseServiceImpl
 	protected LMSBookPersistence lmsBookPersistence;
 	@BeanReference(type = LMSBookFinder.class)
 	protected LMSBookFinder lmsBookFinder;
+	@BeanReference(type = com.slayer.service.LMSBorrowingLocalService.class)
+	protected com.slayer.service.LMSBorrowingLocalService lmsBorrowingLocalService;
+	@BeanReference(type = LMSBorrowingPersistence.class)
+	protected LMSBorrowingPersistence lmsBorrowingPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ImageLocalService.class)

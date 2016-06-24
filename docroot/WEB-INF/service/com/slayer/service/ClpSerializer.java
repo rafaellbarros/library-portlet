@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import com.slayer.model.LMSBookClp;
+import com.slayer.model.LMSBorrowingClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -106,6 +107,10 @@ public class ClpSerializer {
 			return translateInputLMSBook(oldModel);
 		}
 
+		if (oldModelClassName.equals(LMSBorrowingClp.class.getName())) {
+			return translateInputLMSBorrowing(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -131,6 +136,16 @@ public class ClpSerializer {
 		return newModel;
 	}
 
+	public static Object translateInputLMSBorrowing(BaseModel<?> oldModel) {
+		LMSBorrowingClp oldClpModel = (LMSBorrowingClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getLMSBorrowingRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
 	public static Object translateInput(Object obj) {
 		if (obj instanceof BaseModel<?>) {
 			return translateInput((BaseModel<?>)obj);
@@ -150,6 +165,42 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals("com.slayer.model.impl.LMSBookImpl")) {
 			return translateOutputLMSBook(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
+		if (oldModelClassName.equals("com.slayer.model.impl.LMSBorrowingImpl")) {
+			return translateOutputLMSBorrowing(oldModel);
 		}
 		else if (oldModelClassName.endsWith("Clp")) {
 			try {
@@ -268,6 +319,10 @@ public class ClpSerializer {
 			return new com.slayer.NoSuchLMSBookException();
 		}
 
+		if (className.equals("com.slayer.NoSuchLMSBorrowingException")) {
+			return new com.slayer.NoSuchLMSBorrowingException();
+		}
+
 		return throwable;
 	}
 
@@ -277,6 +332,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setLMSBookRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputLMSBorrowing(BaseModel<?> oldModel) {
+		LMSBorrowingClp newModel = new LMSBorrowingClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setLMSBorrowingRemoteModel(oldModel);
 
 		return newModel;
 	}

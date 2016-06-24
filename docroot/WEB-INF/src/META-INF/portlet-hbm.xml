@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.slayer.model.LMSBook" />
+	<import class="com.slayer.model.LMSBorrowing" />
 	<class name="com.slayer.model.impl.LMSBookImpl" table="library_LMSBook">
 		<cache usage="read-write" />
 		<id name="bookId" type="long">
@@ -13,5 +14,15 @@
 		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.slayer.model.impl.LMSBorrowingImpl" table="library_LMSBorrowing">
+		<cache usage="read-write" />
+		<id name="borrowingId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="bookId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="memberId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dateBorrowed" type="org.hibernate.type.TimestampType" />
+		<property name="dateReturned" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

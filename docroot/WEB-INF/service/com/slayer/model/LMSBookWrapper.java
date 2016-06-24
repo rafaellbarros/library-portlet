@@ -343,6 +343,12 @@ public class LMSBookWrapper implements LMSBook, ModelWrapper<LMSBook> {
 	}
 
 	@Override
+	public java.util.List<com.slayer.model.LMSBorrowing> getLMSBorrowings()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _lmsBook.getLMSBorrowings();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

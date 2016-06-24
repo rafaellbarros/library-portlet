@@ -9,4 +9,11 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 	</model>
+	<model name="com.slayer.model.LMSBorrowing">
+		<field name="borrowingId" type="long" />
+		<field name="bookId" type="long" />
+		<field name="memberId" type="long" />
+		<field name="dateBorrowed" type="Date" />
+		<field name="dateReturned" type="Date" />
+	</model>
 </model-hints>

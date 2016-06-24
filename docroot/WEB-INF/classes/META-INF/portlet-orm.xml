@@ -26,8 +26,28 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.slayer.model.impl.LMSBorrowingModelImpl">
+		<attributes>
+			<id name="borrowingId" />
+			<basic name="bookId" />
+			<basic name="memberId" />
+			<basic name="dateBorrowed">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="dateReturned">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<entity class="com.slayer.model.impl.LMSBookImpl" name="LMSBook">
 		<table name="library_LMSBook" />
+		<attributes />
+	</entity>
+	<entity class="com.slayer.model.impl.LMSBorrowingImpl" name="LMSBorrowing">
+		<table name="library_LMSBorrowing" />
 		<attributes />
 	</entity>
 </entity-mappings>

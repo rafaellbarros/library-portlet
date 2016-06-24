@@ -293,6 +293,11 @@ public class LMSBookLocalServiceUtil {
 		return getService().searchBooks(bookTitle, companyId, groupId);
 	}
 
+	public static java.util.List<com.slayer.model.LMSBorrowing> getBorrowings(
+		long bookId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getBorrowings(bookId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

@@ -5,4 +5,6 @@
 	<bean id="com.slayer.service.LMSBookService" class="com.slayer.service.impl.LMSBookServiceImpl" />
 	<bean id="com.slayer.service.persistence.LMSBookPersistence" class="com.slayer.service.persistence.LMSBookPersistenceImpl" parent="basePersistence" />
 	<bean id="com.slayer.service.persistence.LMSBookFinder" class="com.slayer.service.persistence.LMSBookFinderImpl" parent="basePersistence" />
+	<bean id="com.slayer.service.LMSBorrowingLocalService" class="com.slayer.service.impl.LMSBorrowingLocalServiceImpl" />
+	<bean id="com.slayer.service.persistence.LMSBorrowingPersistence" class="com.slayer.service.persistence.LMSBorrowingPersistenceImpl" parent="basePersistence" />
 </beans>

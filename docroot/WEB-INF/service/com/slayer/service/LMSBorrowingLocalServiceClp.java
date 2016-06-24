@@ -20,25 +20,26 @@ import com.liferay.portal.service.InvokableLocalService;
  * @author rafael
  * @generated
  */
-public class LMSBookLocalServiceClp implements LMSBookLocalService {
-	public LMSBookLocalServiceClp(InvokableLocalService invokableLocalService) {
+public class LMSBorrowingLocalServiceClp implements LMSBorrowingLocalService {
+	public LMSBorrowingLocalServiceClp(
+		InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
 
-		_methodName0 = "addLMSBook";
+		_methodName0 = "addLMSBorrowing";
 
-		_methodParameterTypes0 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes0 = new String[] { "com.slayer.model.LMSBorrowing" };
 
-		_methodName1 = "createLMSBook";
+		_methodName1 = "createLMSBorrowing";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteLMSBook";
+		_methodName2 = "deleteLMSBorrowing";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteLMSBook";
+		_methodName3 = "deleteLMSBorrowing";
 
-		_methodParameterTypes3 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes3 = new String[] { "com.slayer.model.LMSBorrowing" };
 
 		_methodName4 = "dynamicQuery";
 
@@ -76,11 +77,11 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchLMSBook";
+		_methodName10 = "fetchLMSBorrowing";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getLMSBook";
+		_methodName11 = "getLMSBorrowing";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -88,17 +89,17 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 
 		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getLMSBooks";
+		_methodName13 = "getLMSBorrowings";
 
 		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "getLMSBooksCount";
+		_methodName14 = "getLMSBorrowingsCount";
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "updateLMSBook";
+		_methodName15 = "updateLMSBorrowing";
 
-		_methodParameterTypes15 = new String[] { "com.slayer.model.LMSBook" };
+		_methodParameterTypes15 = new String[] { "com.slayer.model.LMSBorrowing" };
 
 		_methodName16 = "getBeanIdentifier";
 
@@ -107,43 +108,18 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
-
-		_methodName19 = "insertBook";
-
-		_methodParameterTypes19 = new String[] {
-				"java.lang.String", "java.lang.String"
-			};
-
-		_methodName20 = "modifyBook";
-
-		_methodParameterTypes20 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName21 = "searchBooks";
-
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
-
-		_methodName22 = "searchBooks";
-
-		_methodParameterTypes22 = new String[] {
-				"java.lang.String", "long", "long"
-			};
-
-		_methodName23 = "getBorrowings";
-
-		_methodParameterTypes23 = new String[] { "long" };
 	}
 
 	@Override
-	public com.slayer.model.LMSBook addLMSBook(com.slayer.model.LMSBook lmsBook)
+	public com.slayer.model.LMSBorrowing addLMSBorrowing(
+		com.slayer.model.LMSBorrowing lmsBorrowing)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName0,
 					_methodParameterTypes0,
-					new Object[] { ClpSerializer.translateInput(lmsBook) });
+					new Object[] { ClpSerializer.translateInput(lmsBorrowing) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -161,16 +137,16 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.slayer.model.LMSBook createLMSBook(long bookId) {
+	public com.slayer.model.LMSBorrowing createLMSBorrowing(long borrowingId) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { bookId });
+					_methodParameterTypes1, new Object[] { borrowingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -184,18 +160,18 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.slayer.model.LMSBook deleteLMSBook(long bookId)
+	public com.slayer.model.LMSBorrowing deleteLMSBorrowing(long borrowingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { bookId });
+					_methodParameterTypes2, new Object[] { borrowingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -217,19 +193,19 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.slayer.model.LMSBook deleteLMSBook(
-		com.slayer.model.LMSBook lmsBook)
+	public com.slayer.model.LMSBorrowing deleteLMSBorrowing(
+		com.slayer.model.LMSBorrowing lmsBorrowing)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(lmsBook) });
+					new Object[] { ClpSerializer.translateInput(lmsBorrowing) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -247,7 +223,7 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -448,13 +424,13 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 	}
 
 	@Override
-	public com.slayer.model.LMSBook fetchLMSBook(long bookId)
+	public com.slayer.model.LMSBorrowing fetchLMSBorrowing(long borrowingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { bookId });
+					_methodParameterTypes10, new Object[] { borrowingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -472,18 +448,18 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.slayer.model.LMSBook getLMSBook(long bookId)
+	public com.slayer.model.LMSBorrowing getLMSBorrowing(long borrowingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { bookId });
+					_methodParameterTypes11, new Object[] { borrowingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -505,7 +481,7 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -544,8 +520,9 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 	}
 
 	@Override
-	public java.util.List<com.slayer.model.LMSBook> getLMSBooks(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.slayer.model.LMSBorrowing> getLMSBorrowings(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -568,11 +545,11 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (java.util.List<com.slayer.model.LMSBook>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.slayer.model.LMSBorrowing>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public int getLMSBooksCount()
+	public int getLMSBorrowingsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -600,15 +577,15 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 	}
 
 	@Override
-	public com.slayer.model.LMSBook updateLMSBook(
-		com.slayer.model.LMSBook lmsBook)
+	public com.slayer.model.LMSBorrowing updateLMSBorrowing(
+		com.slayer.model.LMSBorrowing lmsBorrowing)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName15,
 					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(lmsBook) });
+					new Object[] { ClpSerializer.translateInput(lmsBorrowing) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -626,7 +603,7 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 			}
 		}
 
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
+		return (com.slayer.model.LMSBorrowing)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -679,160 +656,6 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public com.slayer.model.LMSBook insertBook(java.lang.String bookTitle,
-		java.lang.String author) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
-					new Object[] {
-						ClpSerializer.translateInput(bookTitle),
-						
-					ClpSerializer.translateInput(author)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public com.slayer.model.LMSBook modifyBook(long bookId,
-		java.lang.String bookTitle, java.lang.String author) {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
-					new Object[] {
-						bookId,
-						
-					ClpSerializer.translateInput(bookTitle),
-						
-					ClpSerializer.translateInput(author)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.slayer.model.LMSBook)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.slayer.model.LMSBook> searchBooks(
-		java.lang.String bookTitle)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
-					new Object[] { ClpSerializer.translateInput(bookTitle) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.slayer.model.LMSBook>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.slayer.model.LMSBook> searchBooks(
-		java.lang.String bookTitle, long companyId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
-					new Object[] {
-						ClpSerializer.translateInput(bookTitle),
-						
-					companyId,
-						
-					groupId
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.slayer.model.LMSBook>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.slayer.model.LMSBorrowing> getBorrowings(
-		long bookId) throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { bookId });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.slayer.model.LMSBorrowing>)ClpSerializer.translateOutput(returnObj);
-	}
-
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -870,14 +693,4 @@ public class LMSBookLocalServiceClp implements LMSBookLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
 }

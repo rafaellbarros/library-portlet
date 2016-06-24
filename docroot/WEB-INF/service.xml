@@ -4,7 +4,8 @@
 	<author>rafael</author>
 	<namespace>library</namespace>
 
-	<entity name="LMSBook" local-service="true" remote-service="true" uuid="true">
+	<entity name="LMSBook" local-service="true" remote-service="true"
+		uuid="true">
 
 		<!-- PK fields -->
 		<column name="bookId" type="long" primary="true" id-type="increment" />
@@ -12,6 +13,9 @@
 		<!-- UI fields -->
 		<column name="bookTitle" type="String" />
 		<column name="author" type="String" />
+
+		<!--* Relationship one-to-many * -->
+		<column name="lmsBorrowings" type="Collection" entity="LMSBorrowing" />
 
 		<!-- Audit fields -->
 		<column name="createDate" type="Date" />
@@ -30,5 +34,23 @@
 		</finder>
 
 		<reference package-path="com.liferay.portal" entity="Image" />
+	</entity>
+
+	<entity name="LMSBorrowing" local-service="true" remote-service="false">
+		<!-- PK fields -->
+		<column name="borrowingId" type="long" primary="true" id-type="increment" />
+
+		<!-- FK fields -->
+		<column name="bookId" type="long" />
+		<column name="memberId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="dateBorrowed" type="Date" />
+		<column name="dateReturned" type="Date" />
+
+		<!--* Relationship one-to-many * -->
+		<finder return-type="Collection" name="BookId">
+			<finder-column name="bookId" />
+		</finder>
 	</entity>
 </service-builder>
